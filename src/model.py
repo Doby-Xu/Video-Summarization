@@ -85,11 +85,12 @@ class Doubao:
     def __init__(self, system_prompt):
         self.client = Ark(api_key=os.environ.get("ARK_API_KEY"))
         self.system_prompt = system_prompt
+        self.endpoint = "ep-xxxxxxx"
     def get_response(self, user_input, system_prompt=None):
         if system_prompt is None:
             system_prompt = self.system_prompt
         completion = self.client.chat.completions.create(
-            model="ep-20241115095025-cw5x8",
+            model=self.endpoint,
             messages = [
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_input},
